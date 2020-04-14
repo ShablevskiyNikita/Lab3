@@ -41,19 +41,15 @@ namespace Lab3FirstPart
                     double number = Convert.ToDouble(input[1]);
                     Console.WriteLine(_operations[operation](number));
                 }
-                catch(System.IndexOutOfRangeException)
+                catch(Exception e) when (e is IndexOutOfRangeException || e is FormatException)
                 {
-                    Console.WriteLine("Invalid operation");
+                    Console.WriteLine($"An error ocured : {e.Message}");
+                    Console.WriteLine("<----Press any button to do final exit from the program---->");
+                    Console.ReadKey();
                     break;
-                }
-                catch(System.FormatException)
-                {
-                    Console.WriteLine("Invalid type of arguments! You need to write two numbers in such format: \n(0) (1)\nWhere (0) is number from 0 to 2, (1) is number,  over which the operation will be performed");
-                    break;
-                }         
+                }                   
             }
-            Console.WriteLine("<----Press any button to do final exit from the program---->");
-            Console.ReadKey();
+           
         }
     }
 }
